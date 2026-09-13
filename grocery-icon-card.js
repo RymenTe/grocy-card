@@ -10,6 +10,7 @@
  * Konfiguration (YAML, kein visueller Editor):
  *
  * type: custom:grocery-icon-card
+ * icon_sensor: sensor.grocery_icon_map_zuordnungen   # optional, siehe unten
  * lists:
  *   - entity: todo.einkaufsliste
  *     name: Bring
@@ -17,6 +18,12 @@
  *   - entity: todo.mealie_einkaufsliste
  *     name: Mealie
  *     icon: mdi:chef-hat
+ *
+ * icon_sensor (optional):
+ * Wenn die begleitende "Grocery Icon Map"-Integration installiert ist, wird
+ * deren Sensor-Attribut `mappings` (Label -> Icon) zusätzlich zur eingebauten
+ * Stichwortliste ausgewertet und hat Vorrang. Ohne die Integration
+ * funktioniert die Karte unverändert mit der eingebauten Liste.
  *
  * Installation:
  * 1. Diese Datei nach config/www/grocery-icon-card.js kopieren.
@@ -96,11 +103,26 @@ const ICON_RULES = [
 
 const DEFAULT_ICON = "mdi:cart-outline";
 
-function iconForItem(name) {
+/**
+ * Ermittelt das Icon für einen Artikelnamen.
+ * Prüfreihenfolge: externe Zuordnung (aus der Grocery-Icon-Map-Integration,
+ * falls vorhanden) -> eingebaute Stichwortliste -> Standard-Icon.
+ * @param {string} name Artikelname
+ * @param {Object<string,string>|null} externalMappings Label -> Icon, aus dem Sensor
+ */
+function iconForItem(name, externalMappings) {
   const n = (name || "").toLowerCase();
+
+  if (externalMappings) {
+    for (const [label, icon] of Object.entries(externalMappings)) {
+      if (label && n.includes(label.toLowerCase())) return icon;
+    }
+  }
+
   for (const rule of ICON_RULES) {
     if (rule.keys.some((k) => n.includes(k))) return rule.icon;
   }
+
   return DEFAULT_ICON;
 }
 
@@ -201,6 +223,14 @@ class GroceryIconCard extends HTMLElement {
     this._gridEl = grid;
   }
 
+  _externalMappings() {
+    const entityId = this._config.icon_sensor;
+    if (!entityId || !this._hass) return null;
+    const state = this._hass.states[entityId];
+    if (!state) return null;
+    return state.attributes.mappings || null;
+  }
+
   async _fetchItems() {
     if (!this._hass || !this._config) return;
     Array.from(this._tabsEl.children).forEach((btn, idx) =>
@@ -229,7 +259,7 @@ class GroceryIconCard extends HTMLElement {
       const tile = document.createElement("div");
       tile.className = "gic-item";
       const icon = document.createElement("ha-icon");
-      icon.setAttribute("icon", iconForItem(item.summary));
+      icon.setAttribute("icon", iconForItem(item.summary, this._externalMappings()));
       const label = document.createElement("span");
       label.textContent = item.summary;
       tile.appendChild(icon);
