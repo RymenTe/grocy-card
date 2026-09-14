@@ -38,3 +38,9 @@
 ## v1.4.1
 
 - Bearbeiten-Dialog (langes Klicken): Kategorie-Feld ist jetzt ein Dropdown mit den über die Integration bereits bekannten Kategorien statt freiem Text - plus "➕ Neue Kategorie…"-Option, die bei Bedarf ein Textfeld einblendet
+
+## v1.4.2
+
+- Fix: Ansicht (flach/nach Kategorie) wird jetzt im Browser gemerkt (localStorage, je Karte anhand ihrer Listen) - springt nicht mehr bei jedem Neuladen/Update auf den Standard zurück
+- Fix: Label im Bearbeiten-Dialog umbenennen entfernt jetzt zuverlässig die alte Zuordnung, statt sie parallel bestehen zu lassen (die alte konnte durchs Scoring weiterhin gewinnen, wodurch die Änderung wirkungslos aussah)
+- Fix: "Entfernen" im Bearbeiten-Dialog löscht jetzt immer das ursprüngliche Label, nicht den ggf. schon editierten Feldinhalt
