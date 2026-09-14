@@ -34,3 +34,7 @@
 ## v1.4.0
 
 - Besseres Matching: bei mehreren passenden Stichwörtern gewinnt jetzt das spezifischste (längeres/mehrteiliges Label, Bonus wenn es am Ende des Artikeltextes steht - im Deutschen sitzt das Grundwort bei Komposita meist dort), statt einfach das zuerst gefundene. Angelehnt an das Scoring-Prinzip aus rynecoop/ha-grocery-learning.
+
+## v1.4.1
+
+- Bearbeiten-Dialog (langes Klicken): Kategorie-Feld ist jetzt ein Dropdown mit den über die Integration bereits bekannten Kategorien statt freiem Text - plus "➕ Neue Kategorie…"-Option, die bei Bedarf ein Textfeld einblendet
