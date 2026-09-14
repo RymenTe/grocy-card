@@ -16,3 +16,8 @@
 ## v1.3.0
 
 - Neu: Langes Klicken/Halten auf einen Artikel öffnet ein Bearbeiten-Formular (Label/Icon/Kategorie), sofern icon_sensor konfiguriert ist - speichert über die neuen Grocery-Icon-Map-Services
+
+## v1.3.1 (nachträglich, HACS-Validierung)
+
+- README: Vorschau-Bild ergänzt (docs/preview.png) - HACS verlangt mindestens ein Bild im Readme für Frontend/Plugin-Repos
+- Hinweis: Repository-Topics müssen zusätzlich in den GitHub-Repo-Einstellungen gesetzt werden (kein Datei-Fix möglich)

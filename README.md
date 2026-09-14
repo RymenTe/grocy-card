@@ -1,5 +1,9 @@
 # Grocery Icon Card
 
+![Vorschau der Karte](docs/preview.png)
+
+*Illustrative Vorschau – kein echter Screenshot aus einer laufenden HA-Instanz.*
+
 Custom Lovelace Card für Home Assistant. Zeigt eine oder mehrere `todo`-Entitäten
 (z. B. Bring! und Mealie) als umschaltbares Icon-Raster an, mit automatischer
 Symbol-Zuordnung anhand des Artikelnamens. Voll bedienbar: Artikel abhaken und
