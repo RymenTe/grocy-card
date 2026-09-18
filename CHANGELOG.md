@@ -44,3 +44,8 @@
 - Fix: Ansicht (flach/nach Kategorie) wird jetzt im Browser gemerkt (localStorage, je Karte anhand ihrer Listen) - springt nicht mehr bei jedem Neuladen/Update auf den Standard zurück
 - Fix: Label im Bearbeiten-Dialog umbenennen entfernt jetzt zuverlässig die alte Zuordnung, statt sie parallel bestehen zu lassen (die alte konnte durchs Scoring weiterhin gewinnen, wodurch die Änderung wirkungslos aussah)
 - Fix: "Entfernen" im Bearbeiten-Dialog löscht jetzt immer das ursprüngliche Label, nicht den ggf. schon editierten Feldinhalt
+
+## v1.5.0
+
+- Neu: Artikel-Notiz (`description`-Feld, z.B. "Type 550" bei Mehl) wird jetzt unter dem Artikelnamen angezeigt, sofern gesetzt (funktioniert mit Bring! und - vorbehaltlich eigenem Test - Mealie)
+- Neu: Beim Hinzufügen eines Artikels gibt's einen 📝-Schalter, der ein zweites Textfeld für eine optionale Notiz einblendet, statt die Zeile immer mit zwei Feldern zu zeigen
